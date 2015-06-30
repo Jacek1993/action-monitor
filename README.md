@@ -16,9 +16,13 @@ This is a standalone Spring Boot based application.
 Build & Run
 -----------
 First of all go to the project's directory and run the following command from the command line:
+```
 mvn clean package
-Then type: java -jar target/action-monitor-1.0.jar
-
+```
+Then type:
+```
+java -jar target/action-monitor-1.0.jar
+```
 How it works
 ------------
 First of all when application starts, the database will created and will be filled with some test data.
