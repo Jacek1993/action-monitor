@@ -53,6 +53,15 @@ public class HomeController implements ErrorController {
     }
 
     /**
+     * 405 method not allowed error page
+     * @return {@link String}
+     */
+    @RequestMapping(value = "/405",method = RequestMethod.GET)
+    public String methodNotAllowed(){
+        return "405";
+    }
+
+    /**
      * Common error page
      * @return {@link String}
      */

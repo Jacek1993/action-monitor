@@ -42,16 +42,12 @@ public class MessageRestController {
     public @ResponseBody CrudResponse addMessage(@RequestBody @Valid CrudRequest request, BindingResult result){
         CrudResponse response = new CrudResponse(CrudResponseStatus.SUCCESSFULL);
         if(result.hasErrors()){
-            response.setStatus(CrudResponseStatus.FAILED);
+           response.setStatus(CrudResponseStatus.FAILED);
            return response;
         }
         Message msg = new Message(request.getMessage());
-        try{
-            messageService.insert(msg);
-            response.setEntity(msg);
-        } catch (IllegalArgumentException ex){
-            response.setStatus(CrudResponseStatus.FAILED);
-        }
+        messageService.insert(msg);
+        response.setEntity(msg);
         return response;
     }
 
@@ -85,21 +81,13 @@ public class MessageRestController {
     @RequestMapping(value = "/{message}",method = RequestMethod.POST)
     public @ResponseBody CrudResponse updateMessage(@PathVariable Message message, @RequestBody @Valid CrudRequest request,BindingResult result){
         CrudResponse response = new CrudResponse(CrudResponseStatus.SUCCESSFULL);
-        if(result.hasErrors()){
+        if(result.hasErrors() || message == null){
             response.setStatus(CrudResponseStatus.FAILED);
             return response;
         }
-        if(message == null){
-            response.setStatus(CrudResponseStatus.FAILED);
-            return response;
-        }
-        try{
-            message.setMessage(request.getMessage());
-            messageService.update(message);
-            response.setEntity(message);
-        } catch (IllegalArgumentException ex){
-            response.setStatus(CrudResponseStatus.FAILED);
-        }
+        message.setMessage(request.getMessage());
+        messageService.update(message);
+        response.setEntity(message);
         return response;
     }
 

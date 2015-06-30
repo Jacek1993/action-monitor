@@ -41,10 +41,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return new EmbeddedServletContainerCustomizer() {
             @Override
             public void customize(ConfigurableEmbeddedServletContainer container) {
-                ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
                 ErrorPage error400Page = new ErrorPage(HttpStatus.BAD_REQUEST, "/400");
+                ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
+                ErrorPage error405Page = new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED, "/405");
                 ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500");
-                container.addErrorPages(error404Page, error400Page, error500Page);
+                container.addErrorPages(error404Page, error400Page, error405Page, error500Page);
             }
         };
     }

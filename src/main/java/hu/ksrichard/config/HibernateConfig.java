@@ -67,7 +67,7 @@ public class HibernateConfig {
 
     /**
      * Hibernate Transaction Manager Bean
-     * @param s
+     * @param s SessionFactory that is needed for Hibernate Transaction Manager
      * @return {@link HibernateTransactionManager}
      */
     @Bean
