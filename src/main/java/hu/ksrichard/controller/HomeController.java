@@ -44,6 +44,15 @@ public class HomeController implements ErrorController {
     }
 
     /**
+     * 400 bad request error page
+     * @return {@link String}
+     */
+    @RequestMapping(value = "/400",method = RequestMethod.GET)
+    public String badRequest(){
+        return "400";
+    }
+
+    /**
      * Common error page
      * @return {@link String}
      */

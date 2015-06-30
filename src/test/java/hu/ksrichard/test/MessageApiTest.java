@@ -137,5 +137,105 @@ public class MessageApiTest {
                 .andExpect(jsonPath("$", Matchers.hasSize(50)));
     }
 
+    /**
+     * Test for add new message with empty Message
+     * @throws Exception
+     */
+    @Test
+    public void testAddMessageEmptyMessage() throws Exception {
+        Message msg = new Message("");
+        this.mockMvc.perform(
+                post("/message")
+                        .content(JsonUtil.getJson(msg))
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8"))
+                .andExpect(jsonPath("status").value(CrudResponseStatus.FAILED.toString()))
+                .andExpect(jsonPath("entity").value(Matchers.nullValue()));
+    }
+
+    /**
+     * Test for add new message with wrong JSON body
+     * @throws Exception
+     */
+    @Test
+    public void testAddMessageWrongJSON() throws Exception {
+        this.mockMvc.perform(
+                post("/message")
+                        .content("{ message:\"new message\" ")
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isBadRequest());
+    }
+
+    /**
+     * Test for delete a message with wrong ID
+     * @throws Exception
+     */
+    @Test
+    public void testDeleteMessageWrongId() throws Exception {
+        this.mockMvc.perform(
+                delete("/message/999")
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8"))
+                .andExpect(jsonPath("status").value(CrudResponseStatus.FAILED.toString()))
+                .andExpect(jsonPath("entity").value(Matchers.nullValue()));
+    }
+
+    /**
+     * Test for update a message with wrong message ID
+     * @throws Exception
+     */
+    @Test
+    public void testUpdateMessageWrongId() throws Exception {
+        Message msg = new Message("brand-new message");
+        Integer id = 999;
+        this.mockMvc.perform(
+                post("/message/" + id)
+                        .content(JsonUtil.getJson(msg))
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8"))
+                .andExpect(jsonPath("status").value(CrudResponseStatus.FAILED.toString()))
+                .andExpect(jsonPath("entity").value(Matchers.nullValue()));
+    }
+
+    /**
+     * Test for update a message with empty message
+     * @throws Exception
+     */
+    @Test
+    public void testUpdateMessageEmptyMessage() throws Exception {
+        Message msg = new Message("");
+        Integer id = 1;
+        this.mockMvc.perform(
+                post("/message/" + id)
+                        .content(JsonUtil.getJson(msg))
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8"))
+                .andExpect(jsonPath("status").value(CrudResponseStatus.FAILED.toString()))
+                .andExpect(jsonPath("entity").value(Matchers.nullValue()));
+    }
+
+    /**
+     * Test for update a message with wrong JSON
+     * @throws Exception
+     */
+    @Test
+    public void testUpdateMessageWrongJSON() throws Exception {
+        Integer id = 1;
+        this.mockMvc.perform(
+                post("/message/" + id)
+                        .content("{ message:\"brand-new message\" ")
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isBadRequest());
+    }
+
 
 }
