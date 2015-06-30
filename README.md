@@ -37,7 +37,10 @@ In the same directory (where you started from the app) there you can find the da
 
 Testing
 -------
-To run test simply go into the project directory and type: mvn test
+To run test simply go into the project directory and type:
+```
+mvn test
+```
 For manual testing there is a Postman collection called Database_Action_Monitoring.json.postman_collection.
 For testing main functionality open http://localhost:8080 in the browser and click on "Connect" button.
 Then import Postman collection and try out some of them, and you will see every actions in browser.
