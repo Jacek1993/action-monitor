@@ -31,6 +31,7 @@ public class StringToMessageConverter implements Converter<String,Message> {
         Message msg = null;
         try{
             msg = messageService.findById(realId);
+            if(msg == null) logger.error("Message not found by ID: "+id);
         } catch (IllegalArgumentException ex){
             logger.error("Message not found by ID: "+id);
         }
