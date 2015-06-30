@@ -3,9 +3,7 @@
 
 Database Action Monitor Spring Boot application using ActiveMq and Spring WebSocket
 
-
-
-Database Action Monitor
+Description
 -----------------------
 This application is designed to monitor every actions (INSERT,UPDATE,DELETE) on a table called "messages".
 The database is H2 Database, a single file based db.
