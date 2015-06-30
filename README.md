@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 **Database Action Monitor**
 -
 
@@ -40,7 +39,3 @@ To run test simply go into the project directory and type: mvn test
 For manual testing there is a Postman collection called Database_Action_Monitoring.json.postman_collection.
 For testing main functionality open http://localhost:8080 in the browser and click on "Connect" button.
 Then import Postman collection and try out some of them, and you will see every actions in browser.
-=======
-# action-monitor
-Database Action Monitor Spring Boot application using ActiveMq and Spring WebSocket
->>>>>>> 7e43ecab06ab0bee32ddafff06f7e2a9d39f9f33
